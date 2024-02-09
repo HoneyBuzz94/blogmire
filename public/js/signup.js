@@ -1,5 +1,4 @@
 const signUpHandler = async (e) => {
-    console.log('ran')
   e.preventDefault();
 
   const email = document.querySelector("#email").value.trim();
