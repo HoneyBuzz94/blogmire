@@ -1,8 +1,13 @@
 const router = require("express").Router();
+const { User, Post } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
+    const postData = await Post.findAll({ include: [{ model: User }] });
+    const posts = postData.map((project) => project.get({ plain: true }));
+
     res.render("home", {
+      posts,
       logged_in: req.session.logged_in,
       username: req.session.username,
     });

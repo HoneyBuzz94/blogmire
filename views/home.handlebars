@@ -6,39 +6,57 @@
     </div>
 
     {{#if logged_in}}
-    <p class="subtitle is-3">Welcome {{username}}</p>
+      <p class="subtitle is-3">Welcome {{username}}</p>
 
-    <div class="navbar-end">
-      <div class="buttons">
+      <div class="navbar-end">
+        <div class="buttons">
           <a id="logout" class="button is-primary">
             <strong>Logout</strong>
           </a>
         </div>
-    </div>
+      </div>
     {{else}}
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary" href="/signup">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light" href="/login">
-            Log in
-          </a>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary" href="/signup">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light" href="/login">
+              Log in
+            </a>
+          </div>
         </div>
       </div>
-    </div>
     {{/if}}
 
   </div>
 </header>
 
 <div class="container">
-{{#if logged_in}}
-  
-{{else}}
-  <h2 class="subtitle is-2 has-text-centered">Log in to see the latest posts on Blogmire</h2>
-{{/if}}
+  {{#if logged_in}}
+    {{#each posts as |post|}}
+      <section class="section">
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{post.title}}</p>
+                <p class="subtitle is-6">Author: {{post.user.username}}</p>
+              </div>
+            </div>
+
+            <div class="content">
+              {{post.text}}
+            </div>
+          </div>
+        </div>
+      </section>
+    {{/each}}
+  {{else}}
+    <h2 class="subtitle is-2 has-text-centered">Log in to see the latest posts
+      on Blogmire</h2>
+  {{/if}}
 </div>
 
 <script src="/js/logout.js"></script>
