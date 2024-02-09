@@ -1,4 +1,4 @@
-<header>
+<header class="box">
   <div class="navbar-menu">
 
     <div class="navbar-start">
@@ -6,8 +6,7 @@
     </div>
 
     {{#if logged_in}}
-      <p class="subtitle is-3">Welcome {{username}}</p>
-
+      <p class="subtitle is-4">Welcome {{username}}</p>
       <div class="navbar-end">
         <div class="buttons">
           <a id="logout" class="button is-primary">
@@ -29,12 +28,14 @@
         </div>
       </div>
     {{/if}}
-
   </div>
 </header>
 
 <div class="container">
   {{#if logged_in}}
+    <div class="has-text-centered">
+      <a class="button is-info is-outlined" href="/createpost">Create a new post</a>
+    </div>
     {{#each posts as |post|}}
       <section class="section">
         <div class="card">
@@ -54,7 +55,7 @@
       </section>
     {{/each}}
   {{else}}
-    <h2 class="subtitle is-2 has-text-centered">Log in to see the latest posts
+    <h2 class="subtitle is-3 has-text-centered">Log in to see the latest posts
       on Blogmire</h2>
   {{/if}}
 </div>
