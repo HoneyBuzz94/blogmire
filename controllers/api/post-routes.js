@@ -5,7 +5,7 @@ const { User, Post } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-        include: [{ model: User }]
+      include: [{ model: User }],
     });
     res.status(200).json(postData);
   } catch (err) {
@@ -19,12 +19,43 @@ router.post("/", async (req, res) => {
     const postData = await Post.create({
       title: req.body.title,
       text: req.body.text,
-      user_id: req.session.user_id
+      user_id: req.session.user_id,
     });
 
-    res.redirect('/');
+    res.redirect("/");
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+// Update post
+router.put("/:id", async (req, res) => {
+  try {
+    Post.update(req.body, { where: { id: req.params.id } });
+    
+    // res.status(200).json({ message: "Post successfully updated" });
+    window.location.reload();
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Delete post
+router.delete("/:id", async (req, res) => {
+  try {
+    const postData = await Post.destroy({
+      where: { id: req.params.id },
+    });
+
+    if (!postData) {
+      res.status(404).json({ message: "No post found with that id" });
+      return;
+    }
+
+    // res.status(200).json({ message: 'Post successfully deleted' })
+    window.location.reload();
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
