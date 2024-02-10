@@ -1,0 +1,43 @@
+<header class="box">
+  <div class="navbar-menu">
+
+    <div class="navbar-start">
+      <a href="/" class="title is-1">Blogmire</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="buttons">
+        <form action="/api/users/logout" method="POST">
+          <button type="submit" class="button is-light">
+              <strong>Logout</strong>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<div class="container">
+  <div class="has-text-centered">
+    <a class="button is-info is-outlined" href="/createpost">Create a new post</a>
+  </div>
+  {{#each posts as |post|}}
+    <section class="section">
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{post.title}}</p>
+              <p class="subtitle is-6">Author: {{post.user.username}} | <em>{{post.createdAt}}</em></p>
+            </div>
+          </div>
+
+          <div class="content">
+            {{post.text}}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{/each}}
+</div>

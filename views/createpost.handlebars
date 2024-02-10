@@ -1,8 +1,20 @@
 <header class="box">
   <div class="navbar-menu">
+
     <div class="navbar-start">
       <a href="/" class="title is-1">Blogmire</a>
     </div>
+
+    <div class="navbar-end">
+      <div class="buttons">
+        <form action="/api/users/logout" method="POST">
+          <button type="submit" class="button is-light">
+              <strong>Logout</strong>
+          </button>
+        </form>
+      </div>
+    </div>
+
   </div>
 </header>
 
