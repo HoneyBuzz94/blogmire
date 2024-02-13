@@ -1,62 +1,48 @@
-<header class="box">
-  <div class="navbar-menu">
-
-    <div class="navbar-start">
-      <a href="/" class="title is-1">Blogmire</a>
+<div class="navbar-menu mb-5">
+  <div class="navbar-end">
+    <div class="buttons">
+      {{#if logged_in}}
+        <a class="button is-primary" href="/dashboard">
+          <strong>{{username}}'s Dashboard</strong>
+        </a>
+        <button id="logout" class="button is-light">
+          <strong>Logout</strong>
+        </button>
+      {{else}}
+        <a class="button is-primary" href="/signup">
+          <strong>Sign up</strong>
+        </a>
+        <a class="button is-light" href="/login">
+          <strong>Login</strong>
+        </a>
+      {{/if}}
     </div>
-
-    {{#if logged_in}}
-      <div class="navbar-end">
-        <div class="buttons">
-          <a class="button is-primary" href="/dashboard">
-            <strong>{{username}}'s Dashboard</strong>
-          </a>
-          <form action="/api/users/logout" method="POST">
-            <button type="submit" class="button is-light">
-              <strong>Logout</strong>
-            </button>
-          </form>
-        </div>
-      </div>
-    {{else}}
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary" href="/signup">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light" href="/login">
-              <strong>Login</strong>
-            </a>
-          </div>
-        </div>
-      </div>
-    {{/if}}
   </div>
-</header>
+</div>
 
 <div class="container">
   {{#if logged_in}}
     {{#each posts as |post|}}
-      <section class="section">
-        <div class="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4">{{post.title}}</p>
-                <p class="subtitle is-6">{{post.user.username}} | <em>{{post.createdAt}}</em></p>
-              </div>
-            </div>
-
-            <div class="content">
-              {{post.text}}
+      <div class="box">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{post.title}}</p>
+              <p class="subtitle is-6">{{post.user.username}} | <em>{{post.createdAt}}</em></p>
             </div>
           </div>
+          <div class="content mt-3">
+            {{post.text}}
+          </div>
         </div>
-      </section>
+        <div class="buttons navbar-end">
+          <button class="button is-info">Comment</button>
+        </div>
+      </div>
     {{/each}}
   {{else}}
-    <h2 class="subtitle is-3 has-text-centered">Log in to see the latest posts on Blogmire</h2>
+    <h2 class="subtitle is-3 has-text-centered">Login to see the latest posts on
+      Blogmire</h2>
   {{/if}}
 </div>
 

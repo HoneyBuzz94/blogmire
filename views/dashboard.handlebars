@@ -1,43 +1,37 @@
-<header class="box">
-  <div class="navbar-menu">
-
-    <div class="navbar-start">
-      <a href="/" class="title is-1">Blogmire</a>
+<div class="navbar-menu mb-5">
+  <div class="navbar-end">
+    <div class="buttons">
+      <a class="button is-info is-outlined" href="/createpost">Create a new post</a>
+      <button id="logout" class="button is-light">
+        <strong>Logout</strong>
+      </button>
     </div>
+  </div>
+</div>
 
-    <div class="navbar-end">
-      <div class="buttons">
-        <form action="/api/users/logout" method="POST">
-          <button type="submit" class="button is-light">
-              <strong>Logout</strong>
-          </button>
+<div class="container">
+  {{#each posts as |post|}}
+    <div class="box">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4">{{post.title}}</p>
+            <p class="subtitle is-6">{{post.user.username}} | <em>{{post.createdAt}}</em></p>
+          </div>
+        </div>
+        <div class="content mt-3">
+          {{post.text}}
+        </div>
+      </div>
+      <div class="buttons navbar-end">
+        <button class="button is-info is-outlined">Edit</button>
+        <form action="/api/posts/{{post.id}}?_method=DELETE" method="POST">
+          <button type="submit" class="button is-danger is-outlined">Delete</button>
         </form>
       </div>
     </div>
-
-  </div>
-</header>
-
-<div class="container">
-  <div class="has-text-centered">
-    <a class="button is-info is-outlined" href="/createpost">Create a new post</a>
-  </div>
-  {{#each posts as |post|}}
-    <section class="section">
-      <div class="card">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">{{post.title}}</p>
-              <p class="subtitle is-6">Author: {{post.user.username}} | <em>{{post.createdAt}}</em></p>
-            </div>
-          </div>
-
-          <div class="content">
-            {{post.text}}
-          </div>
-        </div>
-      </div>
-    </section>
   {{/each}}
 </div>
+
+<script src="/js/logout.js"></script>
+<script src="/js/deletepost.js"></script>

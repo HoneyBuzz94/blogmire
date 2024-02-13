@@ -1,25 +1,17 @@
-<header class="box">
-  <div class="navbar-menu">
-
-    <div class="navbar-start">
-      <a href="/" class="title is-1">Blogmire</a>
+<div class="navbar-menu mb-5">
+  <div class="navbar-end">
+    <div class="buttons">
+      <a class="button is-primary" href="/dashboard">
+        <strong>{{username}}'s Dashboard</strong>
+      </a>
+      <button id="logout" class="button is-light">
+        <strong>Logout</strong>
+      </button>
     </div>
-
-    <div class="navbar-end">
-      <div class="buttons">
-        <form action="/api/users/logout" method="POST">
-          <button type="submit" class="button is-light">
-              <strong>Logout</strong>
-          </button>
-        </form>
-      </div>
-    </div>
-
   </div>
-</header>
+</div>
 
 <div class="container box">
-  <h2 class="subtitle is-2">Create new post</h2>
   <form action="/api/posts" method="POST">
     <div class="field">
       <div class="control">
@@ -54,3 +46,5 @@
     </div>
   </form>
 </div>
+
+<script src="/js/logout.js"></script>

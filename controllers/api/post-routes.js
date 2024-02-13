@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
       user_id: req.session.user_id,
     });
 
-    res.redirect("/");
+    res.redirect("/dashboard");
   } catch (err) {
     res.status(400).json(err);
   }
@@ -33,8 +33,7 @@ router.put("/:id", async (req, res) => {
   try {
     Post.update(req.body, { where: { id: req.params.id } });
     
-    // res.status(200).json({ message: "Post successfully updated" });
-    window.location.reload();
+    res.redirect('/dashboard');
   } catch (err) {
     res.status(500).json(err);
   }
@@ -52,8 +51,7 @@ router.delete("/:id", async (req, res) => {
       return;
     }
 
-    // res.status(200).json({ message: 'Post successfully deleted' })
-    window.location.reload();
+    res.redirect('/dashboard');
   } catch (err) {
     res.status(500).json(err);
   }

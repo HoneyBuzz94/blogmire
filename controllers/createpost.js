@@ -7,7 +7,10 @@ router.get("/", (req, res) => {
     return;
   }
 
-  res.render("createpost", { user_id: req.session.user_id });
+  res.render("createpost", {
+    username: req.session.username,
+    user_id: req.session.user_id,
+  });
 });
 
 module.exports = router;
