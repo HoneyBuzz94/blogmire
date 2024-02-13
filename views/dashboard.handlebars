@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="buttons navbar-end">
-        <button class="button is-info is-outlined">Edit</button>
+        <a class="button is-info is-outlined" href="/editpost/{{post.id}}">Edit</a>
         <form action="/api/posts/{{post.id}}?_method=DELETE" method="POST">
           <button type="submit" class="button is-danger is-outlined">Delete</button>
         </form>
