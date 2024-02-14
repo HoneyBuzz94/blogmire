@@ -28,21 +28,29 @@
           <div class="media">
             <div class="media-content">
               <p class="title is-4">{{post.title}}</p>
-              <p class="subtitle is-6">{{post.user.username}} | <em>{{post.createdAt}}</em></p>
+              <p class="subtitle is-6">{{post.user.username}}
+                |
+                <em>{{post.createdAt}}</em></p>
             </div>
           </div>
           <div class="content mt-3">
             {{post.text}}
           </div>
         </div>
-        <div class="buttons navbar-end">
+        <form action="/api/comments" method="POST">
+          <input
+            id="comment"
+            name="comment"
+            class="input"
+            type="text"
+            placeholder="Leave a comment"
+          />
           <button class="button is-info">Comment</button>
-        </div>
+        </form>
       </div>
     {{/each}}
   {{else}}
-    <h2 class="subtitle is-3 has-text-centered">Login to see the latest posts on
-      Blogmire</h2>
+    <h2 class="subtitle is-3 has-text-centered">Login to see the latest posts on Blogmire</h2>
   {{/if}}
 </div>
 
