@@ -37,15 +37,17 @@
         </div>
         {{#each post.comments as |comment|}}
           <div>
-            {{comment.text}}
-            {{comment.user.username}}
+            <div class="box mb-2 has-background-warning-light">
+              {{comment.text}}
+              <p class="subtitle is-6"><em>{{comment.user.username}}</em></p>
+            </div>
           </div>
         {{/each}}
         <form>
           <input
             id='comment-{{post.id}}'
             name="comment"
-            class="input"
+            class="input mb-2"
             type="text"
             placeholder="Leave a comment"
           />
