@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const { User, Post } = require("../models");
+const { User, Post, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{ model: User }],
+      include: [{ model: User }, { model: Comment, include: [ User ] }],
       order: [["createdAt", "DESC"]],
     });
     const posts = postData.map((project) => project.get({ plain: true }));

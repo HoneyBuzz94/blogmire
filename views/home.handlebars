@@ -28,24 +28,28 @@
           <div class="media">
             <div class="media-content">
               <p class="title is-4">{{post.title}}</p>
-              <p class="subtitle is-6">{{post.user.username}}
-                |
-                <em>{{post.createdAt}}</em></p>
+              <p class="subtitle is-6">{{post.user.username}} | <em>{{post.createdAt}}</em></p>
             </div>
           </div>
           <div class="content mt-3">
             {{post.text}}
           </div>
         </div>
-        <form action="/api/comments" method="POST">
+        {{#each post.comments as |comment|}}
+          <div>
+            {{comment.text}}
+            {{comment.user.username}}
+          </div>
+        {{/each}}
+        <form>
           <input
-            id="comment"
+            id='comment-{{post.id}}'
             name="comment"
             class="input"
             type="text"
             placeholder="Leave a comment"
           />
-          <button class="button is-info">Comment</button>
+          <button class="comment-btn button is-info">Comment</button>
         </form>
       </div>
     {{/each}}
@@ -55,3 +59,4 @@
 </div>
 
 <script src="/js/logout.js"></script>
+<script src="/js/createComment.js"></script>

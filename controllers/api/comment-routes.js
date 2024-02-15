@@ -18,10 +18,12 @@ router.post("/", async (req, res) => {
   try {
     const commentData = await Comment.create({
       text: req.body.text,
+      post_id: req.body.post_id,
       user_id: req.session.user_id,
     });
 
-    res.redirect("/");
+    res.status(200).json(commentData);
+    // res.redirect("/");
   } catch (err) {
     res.status(400).json(err);
   }
